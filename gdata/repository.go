@@ -3,6 +3,7 @@ package gdata
 import (
 	"fmt"
 	"log"
+	"net/http"
 	"time"
 
 	"gopkg.in/mgo.v2"
@@ -22,7 +23,7 @@ const DBNAME = "gene"
 const DOCNAME = "gfile"
 
 // GetGfiles returns the list of gfile
-func (r Repository) GetGfiles() Gfiles {
+func (r Repository) GetGfiles(req *http.Request) Gfiles {
 	session, err := mgo.Dial(SERVER)
 	if err != nil {
 		fmt.Println("Failed to establish connection to Mongo server:", err)
@@ -30,7 +31,14 @@ func (r Repository) GetGfiles() Gfiles {
 	defer session.Close()
 	c := session.DB(DBNAME).C(DOCNAME)
 	results := Gfiles{}
-	if err := c.Find(nil).All(&results); err != nil {
+	filter := bson.M{}
+	req.ParseForm()
+	fmt.Println("Form: ", req.Form)
+	if fileid, haskey := req.Form["_id"]; haskey {
+		filter["_id"] = bson.ObjectIdHex(fileid[0])
+	}
+
+	if err := c.Find(filter).All(&results); err != nil {
 		fmt.Println("Failed to write results:", err)
 	}
 	return results
@@ -64,21 +72,21 @@ func (r Repository) AddGfile(gfile Gfile) bool {
 // 	return true
 // }
 
-// // DeleteAlbum deletes an Album (not used for now)
-// func (r Repository) DeleteAlbum(id string) string {
-// 	session, err := mgo.Dial(SERVER)
-// 	defer session.Close()
-// 	// Verify id is ObjectId, otherwise bail
-// 	if !bson.IsObjectIdHex(id) {
-// 		return "NOT FOUND"
-// 	}
-// 	// Grab id
-// 	oid := bson.ObjectIdHex(id)
-// 	// Remove user
-// 	if err = session.DB(DBNAME).C(DOCNAME).RemoveId(oid); err != nil {
-// 		log.Fatal(err)
-// 		return "INTERNAL ERR"
-// 	}
-// 	// Write status
-// 	return "OK"
-// }
+// DeleteGfile deletes an Gfile (not used for now)
+func (r Repository) DeleteGfile(id string) string {
+	session, err := mgo.Dial(SERVER)
+	defer session.Close()
+	// Verify id is ObjectId, otherwise bail
+	if !bson.IsObjectIdHex(id) {
+		return "NOT FOUND"
+	}
+	// Grab id
+	oid := bson.ObjectIdHex(id)
+	// Remove gfile
+	if err = session.DB(DBNAME).C(DOCNAME).RemoveId(oid); err != nil {
+		log.Panic(err)
+		return "INTERNAL ERR"
+	}
+	// Write status
+	return "OK"
+}

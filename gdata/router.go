@@ -45,12 +45,12 @@ var routes = Routes{
 	// 	"/count",
 	// 	controller.CountAlbum,
 	// },
-	// Route{
-	// 	"DeleteAlbum",
-	// 	"DELETE",
-	// 	"/{id}",
-	// 	controller.DeleteAlbum,
-	// },
+	Route{
+		"DeleteGfile",
+		"DELETE",
+		"/f/{id}",
+		controller.DeleteGfile,
+	},
 }
 
 //NewRouter configures a new router to the API

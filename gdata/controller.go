@@ -6,6 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 //Controller ...
@@ -15,7 +18,7 @@ type Controller struct {
 
 // Index GET /
 func (c *Controller) Index(w http.ResponseWriter, r *http.Request) {
-	files := c.Repository.GetGfiles() // list of all albums
+	files := c.Repository.GetGfiles(r) // list of all gfiles
 	log.Println(files)
 	data, _ := json.Marshal(files)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -42,17 +45,17 @@ func (c *Controller) AddGfile(w http.ResponseWriter, r *http.Request) {
 	var gfile Gfile
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576)) // read the body of the request
 	if err != nil {
-		log.Fatalln("Error AddGfile", err)
+		log.Panicln("Error AddGfile", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 	if err := r.Body.Close(); err != nil {
-		log.Fatalln("Error AddGfile", err)
+		log.Panicln("Error AddGfile", err)
 	}
 	if err := json.Unmarshal(body, &gfile); err != nil { // unmarshall body contents as a type Candidate
 		w.WriteHeader(422) // unprocessable entity
 		if err := json.NewEncoder(w).Encode(err); err != nil {
-			log.Fatalln("Error AddGfile unmarshalling data", err)
+			log.Panicln("Error AddGfile unmarshalling data", err)
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
@@ -99,20 +102,20 @@ func (c *Controller) AddGfile(w http.ResponseWriter, r *http.Request) {
 // 	return
 // }
 
-// // DeleteAlbum DELETE /
-// func (c *Controller) DeleteAlbum(w http.ResponseWriter, r *http.Request) {
-// 	vars := mux.Vars(r)
-// 	id := vars["id"]                                    // param id
-// 	if err := c.Repository.DeleteAlbum(id); err != "" { // delete a album by id
-// 		if strings.Contains(err, "404") {
-// 			w.WriteHeader(http.StatusNotFound)
-// 		} else if strings.Contains(err, "500") {
-// 			w.WriteHeader(http.StatusInternalServerError)
-// 		}
-// 		return
-// 	}
-// 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-// 	w.Header().Set("Access-Control-Allow-Origin", "*")
-// 	w.WriteHeader(http.StatusOK)
-// 	return
-// }
+// DeleteGfile DELETE /
+func (c *Controller) DeleteGfile(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]                                    // param id
+	if err := c.Repository.DeleteGfile(id); err != "" { // delete a gfile by id
+		if strings.Contains(err, "404") {
+			w.WriteHeader(http.StatusNotFound)
+		} else if strings.Contains(err, "500") {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+		return
+	}
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.WriteHeader(http.StatusOK)
+	return
+}

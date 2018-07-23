@@ -8,7 +8,7 @@ import (
 
 //Gfile represents a gene file
 type Gfile struct {
-	ID                 bson.ObjectId   `bson:"_id"`
+	ID                 bson.ObjectId   `json:"_id" bson:"_id"`
 	Filetype           string          `json:"filetype"`
 	Filename           string          `json:"filename"`
 	Filesize           uint32          `json:"filesize"`
@@ -22,9 +22,9 @@ type Gfile struct {
 	Sequencer          string          `json:"sequencer"`
 	Platform           string          `json:"platform"`
 	ReferenceGenome    string          `json:"referenceGenome"`
-	DuplicationRemoved string          `json:"duplicationRemoved"`
+	DuplicationRemoved bool            `json:"duplicationRemoved"`
 	Bed                string          `json:"bed"`
-	Commented          string          `json:"commented"`
+	Commented          bool            `json:"commented"`
 }
 
 //Gfiles is an array of Gfile
