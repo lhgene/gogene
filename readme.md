@@ -31,22 +31,22 @@
         }
     ]
 
-    文件的字段都写在了gdata/model.go里，包括:
-    `json:"_id" bson:"_id"`<br/>
+    文件的字段都写在了gdata/model.go里，包括:<br />
+    `json:"_id" bson:"_id"`<br />
     `json:"filetype,omitempty" bson:"filetype,omitempty"`<br/>
-    `json:"filename,omitempty" bson:"filename,omitempty"`<br/>
-    `json:"filesize,omitempty" bson:"filesize,omitempty"`<br/>
-    `json:"path,omitempty" bson:"path,omitempty"`<br/>
-    `json:"ip,omitempty" bson:"ip,omitempty"`<br/>
-    `json:"sourceFileIds,omitempty" bson:"sourceFileIds,<br/>
-    `json:"creationTime" bson:"creationTime"`<br/>
-    `json:"modificationTime" bson:"modificationTime"`<br/>
-    `json:"taskId,omitempty" bson:"taskId,omitempty"`<br/>
-    `json:"sequencingType,omitempty" ncingType,omitempty"`<br/>
-    `json:"probe,omitempty" bson:"probe,omitempty"`<br/>
-    `json:"sequencer,omitempty" bson:"sequencer,<br/>
-    `json:"platform,omitempty" bson:"platform,omitempty"`<br/>
-    `json:"referenceGenome,omitempty" enceGenome,omitempty"`<br/>
-    `json:"duplicationRemoved,omitempty" cationRemoved,omitempty"`<br/>
-    `json:"bed,omitempty" bson:"bed,omitempty"`<br/>
-    `json:"commented,omitempty" bson:"commented,<br/>
+    `json:"filename,omitempty" bson:"filename,omitempty"`<br />
+    `json:"filesize,omitempty" bson:"filesize,omitempty"`<br />
+    `json:"path,omitempty" bson:"path,omitempty"`<br />
+    `json:"ip,omitempty" bson:"ip,omitempty"`<br />
+    `json:"sourceFileIds,omitempty" bson:"sourceFileIds,<br />
+    `json:"creationTime" bson:"creationTime"`<br />
+    `json:"modificationTime" bson:"modificationTime"`<br />
+    `json:"taskId,omitempty" bson:"taskId,omitempty"`<br />
+    `json:"sequencingType,omitempty" ncingType,omitempty"`<br />
+    `json:"probe,omitempty" bson:"probe,omitempty"`<br />
+    `json:"sequencer,omitempty" bson:"sequencer,<br />
+    `json:"platform,omitempty" bson:"platform,omitempty"`<br />
+    `json:"referenceGenome,omitempty" enceGenome,omitempty"`<br />
+    `json:"duplicationRemoved,omitempty" cationRemoved,omitempty"`<br />
+    `json:"bed,omitempty" bson:"bed,omitempty"`<br />
+    `json:"commented,omitempty" bson:"commented,<br />
