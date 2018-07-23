@@ -13,6 +13,7 @@ type Gfile struct {
 	Filename           string          `json:"filename,omitempty" bson:"filename,omitempty"`
 	Filesize           uint32          `json:"filesize,omitempty" bson:"filesize,omitempty"`
 	Path               string          `json:"path,omitempty" bson:"path,omitempty"`
+	IP                 string          `json:"ip,omitempty" bson:"ip,omitempty"`
 	SourceFileIDs      []bson.ObjectId `json:"sourceFileIds,omitempty" bson:"sourceFileIds,omitempty"`
 	CreationTime       time.Time       `json:"creationTime" bson:"creationTime"`
 	ModificationTime   time.Time       `json:"modificationTime" bson:"modificationTime"`
