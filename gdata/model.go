@@ -9,22 +9,22 @@ import (
 //Gfile represents a gene file
 type Gfile struct {
 	ID                 bson.ObjectId   `json:"_id" bson:"_id"`
-	Filetype           string          `json:"filetype"`
-	Filename           string          `json:"filename"`
-	Filesize           uint32          `json:"filesize"`
-	Path               string          `json:"path"`
-	SourceFileIDs      []bson.ObjectId `json:"sourceFileIds"`
-	CreationTime       time.Time       `json:"creationTime"`
-	ModificationTime   time.Time       `json:"modificationTime"`
-	TaskID             string          `json:"taskId"`
-	SequencingType     string          `json:"sequencingType"`
-	Probe              string          `json:"probe"`
-	Sequencer          string          `json:"sequencer"`
-	Platform           string          `json:"platform"`
-	ReferenceGenome    string          `json:"referenceGenome"`
-	DuplicationRemoved bool            `json:"duplicationRemoved"`
-	Bed                string          `json:"bed"`
-	Commented          bool            `json:"commented"`
+	Filetype           string          `json:"filetype,omitempty" bson:"filetype,omitempty"`
+	Filename           string          `json:"filename,omitempty" bson:"filename,omitempty"`
+	Filesize           uint32          `json:"filesize,omitempty" bson:"filesize,omitempty"`
+	Path               string          `json:"path,omitempty" bson:"path,omitempty"`
+	SourceFileIDs      []bson.ObjectId `json:"sourceFileIds,omitempty" bson:"sourceFileIds,omitempty"`
+	CreationTime       time.Time       `json:"creationTime" bson:"creationTime"`
+	ModificationTime   time.Time       `json:"modificationTime" bson:"modificationTime"`
+	TaskID             string          `json:"taskId,omitempty" bson:"taskId,omitempty"`
+	SequencingType     string          `json:"sequencingType,omitempty" bson:"sequencingType,omitempty"`
+	Probe              string          `json:"probe,omitempty" bson:"probe,omitempty"`
+	Sequencer          string          `json:"sequencer,omitempty" bson:"sequencer,omitempty"`
+	Platform           string          `json:"platform,omitempty" bson:"platform,omitempty"`
+	ReferenceGenome    string          `json:"referenceGenome,omitempty" bson:"referenceGenome,omitempty"`
+	DuplicationRemoved bool            `json:"duplicationRemoved,omitempty" bson:"duplicationRemoved,omitempty"`
+	Bed                string          `json:"bed,omitempty" bson:"bed,omitempty"`
+	Commented          bool            `json:"commented,omitempty" bson:"commented,omitempty"`
 }
 
 //Gfiles is an array of Gfile
