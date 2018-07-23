@@ -38,7 +38,7 @@
     `json:"filesize,omitempty" bson:"filesize,omitempty"`<br />
     `json:"path,omitempty" bson:"path,omitempty"`<br />
     `json:"ip,omitempty" bson:"ip,omitempty"`<br />
-    `json:"sourceFileIds,omitempty" bson:"sourceFileIds,<br />
+    `json:"sourceFileIds,omitempty" bson:"sourceFileIds<br />
     `json:"creationTime" bson:"creationTime"`<br />
     `json:"modificationTime" bson:"modificationTime"`<br />
     `json:"taskId,omitempty" bson:"taskId,omitempty"`<br />
