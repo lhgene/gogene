@@ -32,22 +32,21 @@
     ]
 
     文件的字段都写在了gdata/model.go里，包括:
-    type Gfile struct {
-        ID                 bson.ObjectId   `json:"_id" bson:"_id"`
-        Filetype           string          `json:"filetype"`
-        Filename           string          `json:"filename"`
-        Filesize           uint32          `json:"filesize"`
-        Path               string          `json:"path"`
-        SourceFileIDs      []bson.ObjectId `json:"sourceFileIds"`
-        CreationTime       time.Time       `json:"creationTime"`
-        ModificationTime   time.Time       `json:"modificationTime"`
-        TaskID             string          `json:"taskId"`
-        SequencingType     string          `json:"sequencingType"`
-        Probe              string          `json:"probe"`
-        Sequencer          string          `json:"sequencer"`
-        Platform           string          `json:"platform"`
-        ReferenceGenome    string          `json:"referenceGenome"`
-        DuplicationRemoved bool            `json:"duplicationRemoved"`
-        Bed                string          `json:"bed"`
-        Commented          bool            `json:"commented"`
-    }
+    `json:"_id" bson:"_id"`<br/>
+    `json:"filetype,omitempty" bson:"filetype,omitempty"`<br/>
+    `json:"filename,omitempty" bson:"filename,omitempty"`<br/>
+    `json:"filesize,omitempty" bson:"filesize,omitempty"`<br/>
+    `json:"path,omitempty" bson:"path,omitempty"`<br/>
+    `json:"ip,omitempty" bson:"ip,omitempty"`<br/>
+    `json:"sourceFileIds,omitempty" bson:"sourceFileIds,<br/>
+    `json:"creationTime" bson:"creationTime"`<br/>
+    `json:"modificationTime" bson:"modificationTime"`<br/>
+    `json:"taskId,omitempty" bson:"taskId,omitempty"`<br/>
+    `json:"sequencingType,omitempty" ncingType,omitempty"`<br/>
+    `json:"probe,omitempty" bson:"probe,omitempty"`<br/>
+    `json:"sequencer,omitempty" bson:"sequencer,<br/>
+    `json:"platform,omitempty" bson:"platform,omitempty"`<br/>
+    `json:"referenceGenome,omitempty" enceGenome,omitempty"`<br/>
+    `json:"duplicationRemoved,omitempty" cationRemoved,omitempty"`<br/>
+    `json:"bed,omitempty" bson:"bed,omitempty"`<br/>
+    `json:"commented,omitempty" bson:"commented,<br/>
