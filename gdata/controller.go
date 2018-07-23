@@ -1,6 +1,7 @@
 package gdata
 
 import (
+	"bytes"
 	"encoding/json"
 	"io"
 	"io/ioutil"
@@ -60,13 +61,19 @@ func (c *Controller) AddGfile(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
-	success := c.Repository.AddGfile(gfile) // adds the album to the DB
+	success, newID := c.Repository.AddGfile(gfile) // adds the album to the DB
 	if !success {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusCreated)
+	var buffer bytes.Buffer
+	buffer.WriteString("{\"_id\":\"")
+	buffer.WriteString(newID)
+	buffer.WriteString("\"}")
+	log.Println(buffer.String())
+	w.Write(buffer.Bytes())
 	return
 }
 

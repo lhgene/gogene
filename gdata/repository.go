@@ -45,7 +45,7 @@ func (r Repository) GetGfiles(req *http.Request) Gfiles {
 }
 
 // AddGfile inserts an gfile in the DB
-func (r Repository) AddGfile(gfile Gfile) bool {
+func (r Repository) AddGfile(gfile Gfile) (bool, string) {
 	session, err := mgo.Dial(SERVER)
 	defer session.Close()
 	gfile.ID = bson.NewObjectId()
@@ -55,9 +55,9 @@ func (r Repository) AddGfile(gfile Gfile) bool {
 	session.DB(DBNAME).C(DOCNAME).Insert(gfile)
 	if err != nil {
 		log.Fatal(err)
-		return false
+		return false, ""
 	}
-	return true
+	return true, gfile.ID.Hex()
 }
 
 // // UpdateAlbum updates an Album in the DB (not used for now)
