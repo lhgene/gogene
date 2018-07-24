@@ -29,4 +29,11 @@ type Gfile struct {
 }
 
 //Gfiles is an array of Gfile
-type Gfiles []Gfile
+// type Gfiles []Gfile
+
+//GfileResults represents Gfile search result
+type GfileResults struct {
+	Ret    uint32  `json:"ret"`
+	Msg    string  `json:"msg"`
+	Gfiles []Gfile `json:"data"`
+}
