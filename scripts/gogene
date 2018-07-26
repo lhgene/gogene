@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 dir="/home/work/go/src/gogene"
-cmd="gogene"
+cmd="./gogene"
 user="work"
 
 name=`basename $0`
